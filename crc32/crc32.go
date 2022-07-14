@@ -36,6 +36,8 @@ var (
     CRC32_POSIX  = Params{0x04C11DB7, 0x00000000, false, false, 0xFFFFFFFF}
     // "CRC-32/JAMCRC" x32+x26+x23+x22+x16+x12+x11+x10+x8+x7+x5+x4+x2+x+1
     CRC32_JAMCRC = Params{0x04C11DB7, 0xFFFFFFFF, true, true, 0x00000000}
+    // "CRC-32/CRC32A" (ITU I.363.5 algorithm, popularized by BZIP2) checksum.
+    CRC32_CRC32A = Params{0x04C11DB7, 0x00000000, false, false, 0x00000000}
 )
 
 // 表格

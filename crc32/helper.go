@@ -49,6 +49,11 @@ func ChecksumJAMCRC(data []byte) uint32 {
     return NewTable(CRC32_JAMCRC).Checksum(data)
 }
 
+// 生成 CRC32A
+func ChecksumCRC32A(data []byte) uint32 {
+    return NewTable(CRC32_CRC32A).Checksum(data)
+}
+
 // =======================
 
 // 输出四位 16 进制字符
