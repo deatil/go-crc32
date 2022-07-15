@@ -4,7 +4,7 @@ import "math/bits"
 
 // 参数
 // NAME：参数模型名称。
-// WIDTH：宽度，即CRC比特数。位数为：16
+// WIDTH：宽度，即CRC比特数。位数为：32
 type Params struct {
     // 生成项的简写，以16进制表示。
     // 例如：CRC-32 即是0x04C11DB7，
@@ -24,7 +24,7 @@ type Params struct {
     XorOut uint32
 }
 
-// crc16 类型列表
+// 类型列表
 var (
     // "CRC-32" x32 + x26 + x23 + x22 + x16 + x12 + x11 + x10 + x8 + x7 + x5 + x4 + x2 + x + 1
     CRC32        = Params{0x04C11DB7, 0xFFFFFFFF, true, true, 0xFFFFFFFF}
@@ -34,6 +34,8 @@ var (
     CRC32_BZIP2  = Params{0x04C11DB7, 0xFFFFFFFF, false, false, 0xFFFFFFFF}
     // "CRC-32/POSIX" x32+x26+x23+x22+x16+x12+x11+x10+x8+x7+x5+x4+x2+x+1
     CRC32_POSIX  = Params{0x04C11DB7, 0x00000000, false, false, 0xFFFFFFFF}
+    // "CRC-32/CKSUM" x32+x26+x23+x22+x16+x12+x11+x10+x8+x7+x5+x4+x2+x+1
+    CRC32_CKSUM  = CRC32_POSIX
     // "CRC-32/JAMCRC" x32+x26+x23+x22+x16+x12+x11+x10+x8+x7+x5+x4+x2+x+1
     CRC32_JAMCRC = Params{0x04C11DB7, 0xFFFFFFFF, true, true, 0x00000000}
     // "CRC-32/CRC32A" (ITU I.363.5 algorithm, popularized by BZIP2) checksum.
@@ -48,6 +50,13 @@ var (
     CRC32_CRC32C     = CRC32_Castagnoli
     // "CRC-32/Koopman" x32+x26+x23+x22+x16+x12+x11+x10+x8+x7+x5+x4+x2+x+1
     CRC32_Koopman    = Params{0x741B8CD7, 0xFFFFFFFF, true, true, 0xFFFFFFFF}
+
+    // "CRC-32/XFER" x32+x26+x23+x22+x16+x12+x11+x10+x8+x7+x5+x4+x2+x+1
+    CRC32_XFER   = Params{0x000000AF, 0x00000000, false, false, 0x00000000}
+    // "CRC-32/CRC32Q" x32+x26+x23+x22+x16+x12+x11+x10+x8+x7+x5+x4+x2+x+1
+    CRC32_CRC32Q = Params{0x814141AB, 0x00000000, false, false, 0x00000000}
+    // "CRC-32/CRC32D" x32+x26+x23+x22+x16+x12+x11+x10+x8+x7+x5+x4+x2+x+1
+    CRC32_CRC32D = Params{0xA833982B, 0xFFFFFFFF, true, true, 0xFFFFFFFF}
 )
 
 // 表格
